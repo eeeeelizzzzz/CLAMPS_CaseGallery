@@ -154,9 +154,20 @@ function renderCardTags(entry) {
 
 function renderCaseTableRow(entry) {
   const url = casePageUrl(entry.id);
+  const title = entry.title.replace(/"/g, "&quot;");
 
   return `
-    <tr class="case-table__row" tabindex="0" role="link" data-href="${url}">
+    <tr
+      class="case-table__row"
+      tabindex="0"
+      role="link"
+      data-href="${url}"
+      data-date="${entry.date}"
+      data-platform="${entry.subtitle}"
+      data-title="${title}"
+      data-campaign="${entry.campaign}"
+      data-location="${entry.location}"
+    >
       <td><a href="${url}">${formatDate(entry.date)}</a></td>
       <td>${entry.subtitle}</td>
       <td>${entry.title}</td>

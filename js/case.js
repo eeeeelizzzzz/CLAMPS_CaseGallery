@@ -40,8 +40,6 @@ async function init() {
 
     content.innerHTML = `
       <header class="case-header">
-        <a class="back-link" href="index.html">Case Table</a>
-        <a class="back-link" href="gallery.html">Full Gallery</a>
         <h1>${entry.title}</h1>
         <div class="case-meta">
           <span>${entry.subtitle}</span>

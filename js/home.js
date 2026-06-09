@@ -1,11 +1,28 @@
 import { loadCases, sortTableCases, renderCaseTableBody } from "./app.js";
 
+const table = document.querySelector(".case-table");
 const tableBody = document.getElementById("case-table-body");
-const sortButtons = document.querySelectorAll(".case-table__sort");
+const tableHead = table?.querySelector("thead");
 
 let allCases = [];
 let currentSort = { column: "date", direction: "asc" };
-let sortingEnabled = false;
+
+function getCaseIdFromRow(row) {
+  const href = row.dataset.href;
+  if (!href) return "";
+  return new URL(href, window.location.href).searchParams.get("id") || "";
+}
+
+function casesFromTableRows() {
+  return [...tableBody.querySelectorAll(".case-table__row")].map((row) => ({
+    id: getCaseIdFromRow(row),
+    date: row.dataset.date || "",
+    subtitle: row.dataset.platform || "",
+    title: row.dataset.title || "",
+    campaign: row.dataset.campaign || "",
+    location: row.dataset.location || "",
+  }));
+}
 
 function navigateToCase(row) {
   const href = row.dataset.href;
@@ -32,7 +49,7 @@ function bindTableRows() {
 }
 
 function updateSortIndicators() {
-  sortButtons.forEach((button) => {
+  tableHead?.querySelectorAll(".case-table__sort").forEach((button) => {
     const column = button.dataset.column;
     const indicator = button.querySelector(".case-table__sort-indicator");
 
@@ -52,7 +69,7 @@ function updateSortIndicators() {
 }
 
 function renderTable() {
-  if (!sortingEnabled) {
+  if (allCases.length === 0) {
     return;
   }
 
@@ -66,51 +83,49 @@ function renderTable() {
   updateSortIndicators();
 }
 
-function bindSortHeaders() {
-  sortButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (!sortingEnabled) {
-        return;
-      }
+function handleSortClick(event) {
+  const button = event.target.closest(".case-table__sort");
+  if (!button || allCases.length === 0) {
+    return;
+  }
 
-      const column = button.dataset.column;
+  event.preventDefault();
 
-      if (currentSort.column === column) {
-        currentSort.direction = currentSort.direction === "asc" ? "desc" : "asc";
-      } else {
-        currentSort = { column, direction: "asc" };
-      }
+  const column = button.dataset.column;
+  if (!column) {
+    return;
+  }
 
-      renderTable();
-    });
-  });
+  if (currentSort.column === column) {
+    currentSort.direction = currentSort.direction === "asc" ? "desc" : "asc";
+  } else {
+    currentSort = { column, direction: "asc" };
+  }
+
+  renderTable();
 }
 
 async function init() {
-  bindSortHeaders();
-  updateSortIndicators();
+  if (!tableBody || !tableHead) {
+    return;
+  }
+
+  tableHead.addEventListener("click", handleSortClick);
+  bindTableRows();
+  allCases = casesFromTableRows();
 
   try {
-    allCases = await loadCases();
-    sortingEnabled = true;
-    renderTable();
-  } catch (error) {
-    const hasRows = tableBody.querySelector(".case-table__row");
-    if (!hasRows) {
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="5" class="error-state">${error.message}</td>
-        </tr>
-      `;
+    const fetched = await loadCases();
+    if (fetched.length > 0) {
+      allCases = fetched;
+      renderTable();
       return;
     }
-
-    bindTableRows();
-    sortButtons.forEach((button) => {
-      button.disabled = true;
-      button.title = "Sorting unavailable until case data loads";
-    });
+  } catch {
+    // Keep cases parsed from the static table rows.
   }
+
+  updateSortIndicators();
 }
 
 init();
