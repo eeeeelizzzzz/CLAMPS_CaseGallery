@@ -89,6 +89,29 @@ function sortCases(cases, sortBy) {
   return sorted;
 }
 
+const TABLE_SORT_COLUMNS = {
+  date: (entry) => entry.date,
+  platform: (entry) => entry.subtitle,
+  title: (entry) => entry.title,
+  campaign: (entry) => entry.campaign,
+  location: (entry) => entry.location,
+};
+
+function sortTableCases(cases, column, direction) {
+  const getValue = TABLE_SORT_COLUMNS[column];
+  if (!getValue) return [...cases];
+
+  const factor = direction === "desc" ? -1 : 1;
+
+  return [...cases].sort((a, b) => {
+    const compare = getValue(a).localeCompare(getValue(b), undefined, {
+      sensitivity: "base",
+    });
+    if (compare !== 0) return compare * factor;
+    return a.id.localeCompare(b.id) * factor;
+  });
+}
+
 function filterCases(cases, query) {
   const needle = query.trim().toLowerCase();
   if (!needle) return cases;
@@ -243,6 +266,7 @@ export {
   getQueryParam,
   casePageUrl,
   sortCases,
+  sortTableCases,
   filterCases,
   renderCaseTableBody,
   renderCaseCard,

@@ -18,7 +18,8 @@
         a case, or browse the full gallery with preview figures.
       </p>
       <div class="header-actions">
-        <a href="gallery.html" class="header-link">View all</a>
+        <a href="index.html" class="header-link header-link--active" aria-current="page">Case Table</a>
+        <a href="gallery.html" class="header-link">Full Gallery</a>
       </div>
     </div>
   </header>
@@ -28,11 +29,31 @@
       <table class="case-table" aria-label="CLAMPS example cases">
         <thead>
           <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Platform</th>
-            <th scope="col">Case type</th>
-            <th scope="col">Campaign</th>
-            <th scope="col">Location</th>
+            <th scope="col">
+              <button type="button" class="case-table__sort" data-column="date" aria-sort="ascending">
+                Date <span class="case-table__sort-indicator" aria-hidden="true"></span>
+              </button>
+            </th>
+            <th scope="col">
+              <button type="button" class="case-table__sort" data-column="platform" aria-sort="none">
+                Platform <span class="case-table__sort-indicator" aria-hidden="true"></span>
+              </button>
+            </th>
+            <th scope="col">
+              <button type="button" class="case-table__sort" data-column="title" aria-sort="none">
+                Case type <span class="case-table__sort-indicator" aria-hidden="true"></span>
+              </button>
+            </th>
+            <th scope="col">
+              <button type="button" class="case-table__sort" data-column="campaign" aria-sort="none">
+                Campaign <span class="case-table__sort-indicator" aria-hidden="true"></span>
+              </button>
+            </th>
+            <th scope="col">
+              <button type="button" class="case-table__sort" data-column="location" aria-sort="none">
+                Location <span class="case-table__sort-indicator" aria-hidden="true"></span>
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody id="case-table-body">
