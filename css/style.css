@@ -203,6 +203,17 @@ main {
   white-space: nowrap;
 }
 
+.case-table td a {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.case-table td a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .case-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

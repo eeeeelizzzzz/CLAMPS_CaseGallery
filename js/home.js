@@ -11,7 +11,12 @@ function navigateToCase(row) {
 
 function bindTableRows() {
   tableBody.querySelectorAll(".case-table__row").forEach((row) => {
-    row.addEventListener("click", () => navigateToCase(row));
+    row.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        return;
+      }
+      navigateToCase(row);
+    });
     row.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
@@ -25,14 +30,19 @@ async function init() {
   try {
     const cases = sortCases(await loadCases(), "date-asc");
     tableBody.innerHTML = renderCaseTableBody(cases);
-    bindTableRows();
   } catch (error) {
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="5" class="error-state">${error.message}</td>
-      </tr>
-    `;
+    const hasRows = tableBody.querySelector(".case-table__row");
+    if (!hasRows) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="5" class="error-state">${error.message}</td>
+        </tr>
+      `;
+      return;
+    }
   }
+
+  bindTableRows();
 }
 
 init();

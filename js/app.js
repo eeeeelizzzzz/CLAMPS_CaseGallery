@@ -1,9 +1,15 @@
-const CASES_URL = "data/cases.json";
+const CASES_URL = new URL("../data/cases.json", import.meta.url).href;
 
 let casesCache = null;
 
 async function loadCases() {
   if (casesCache) return casesCache;
+
+  if (window.location.protocol === "file:") {
+    throw new Error(
+      "Cases cannot load from a local file. Use a web server (python3 -m http.server) or open the GitHub Pages site."
+    );
+  }
 
   const response = await fetch(CASES_URL);
   if (!response.ok) {
@@ -128,7 +134,7 @@ function renderCaseTableRow(entry) {
 
   return `
     <tr class="case-table__row" tabindex="0" role="link" data-href="${url}">
-      <td>${formatDate(entry.date)}</td>
+      <td><a href="${url}">${formatDate(entry.date)}</a></td>
       <td>${entry.subtitle}</td>
       <td>${entry.title}</td>
       <td>${entry.campaign}</td>

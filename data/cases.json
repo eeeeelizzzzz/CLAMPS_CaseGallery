@@ -5,7 +5,7 @@
     "title": "Nocturnal Low-Level Jet",
     "subtitle": "CLAMPS2",
     "campaign": "BLISSFUL",
-    "location": "Colorado",
+    "location": "Oklahoma",
     "image": "images/nllj_c2_instrument_template_4panel.png",
     "tags": ["boundary layer", "nocturnal"]
   },
@@ -25,7 +25,7 @@
     "title": "Stable Boundary Layer — Degraded Lidar Quality",
     "subtitle": "CLAMPS1",
     "campaign": "PERiLS 22",
-    "location": "Alabama",
+    "location": "Arkansas",
     "image": "images/stable_bad_dl_c1_instrument_template_4panel.png",
     "tags": ["stable boundary layer"]
   },
@@ -35,7 +35,7 @@
     "title": "Convection Initiation & Gravity Waves",
     "subtitle": "CLAMPS1",
     "campaign": "NWCRIL 20",
-    "location": "Illinois",
+    "location": "Oklahoma",
     "images": [
       {
         "src": "images/ci_c1_instrument_template_4panel.png",
@@ -54,7 +54,7 @@
     "title": "Diurnal Cycle",
     "subtitle": "CLAMPS2",
     "campaign": "BLISSFUL",
-    "location": "Colorado",
+    "location": "Oklahoma",
     "image": "images/diurnal_c2_instrument_template_4panel.png",
     "tags": ["diurnal", "boundary layer"]
   },
@@ -93,7 +93,7 @@
     "date": "2022-12-02",
     "title": "Stable Boundary Layer — Good Lidar Quality",
     "subtitle": "CLAMPS2",
-    "campaign": "Norman",
+    "campaign": "NWC Ops",
     "location": "Oklahoma",
     "image": "images/stable_good_dl_c2_instrument_template_4panel.png",
     "tags": ["stable boundary layer"]
@@ -104,7 +104,7 @@
     "title": "Cold Pool",
     "subtitle": "CLAMPS2",
     "campaign": "PERiLS 23",
-    "location": "Alabama",
+    "location": "Arkansas",
     "image": "images/cold_pool_c2_instrument_template_4panel.png",
     "tags": ["convection", "cold pool"]
   },
@@ -124,7 +124,7 @@
     "title": "Gravity Waves",
     "subtitle": "CLAMPS2",
     "campaign": "BLISSFUL",
-    "location": "Colorado",
+    "location": "Oklahoma",
     "image": "images/gravity_waves_c2_instrument_template_4panel.png",
     "tags": ["gravity waves"]
   },
@@ -153,7 +153,7 @@
     "date": "2026-03-14",
     "title": "Sharp Gradient",
     "subtitle": "CLAMPS2",
-    "campaign": "Norman",
+    "campaign": "NWC Ops",
     "location": "Oklahoma",
     "image": "images/sharp_grad_c2_instrument_template_4panel.png",
     "tags": ["fronts", "gradients"]
@@ -163,7 +163,7 @@
     "date": "2026-03-27",
     "title": "Frontal Passage",
     "subtitle": "CLAMPS2",
-    "campaign": "Norman",
+    "campaign": "NWC Ops",
     "location": "Oklahoma",
     "image": "images/fropa_c2_instrument_template_4panel.png",
     "tags": ["fronts"]
