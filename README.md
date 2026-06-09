@@ -1,6 +1,6 @@
 # CLAMPS Case Gallery
 
-A GitHub Pages site showcasing CLAMPS example cases with instrument overview figures. Each case has a detail page that can be extended with additional text, plots, and interactive content as it is developed. The initial framework for this page was 
+A GitHub Pages site showcasing CLAMPS example cases with instrument overview figures. Each case has a detail page that can be extended with additional text, plots, and interactive content as it is developed.
 
 **Live site:** [https://eeeeelizzzzz.github.io/CLAMPS_CaseGallery/](https://eeeeelizzzzz.github.io/CLAMPS_CaseGallery/)
 
@@ -13,7 +13,7 @@ A GitHub Pages site showcasing CLAMPS example cases with instrument overview fig
 | `case.html?id=…` | Individual case pages |
 | `data/cases.json` | Case metadata (dates, titles, images, tags) |
 | `images/` | Combined instrument overview figures |
-| `js/` | Page logic (ES modules-local) |
+| `js/` | Page logic (ES modules) |
 | `css/style.css` | Shared styles |
 
 ## Adding or updating cases
