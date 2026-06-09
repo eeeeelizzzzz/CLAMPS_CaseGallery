@@ -206,6 +206,12 @@ main {
   font-weight: 500;
 }
 
+.tag--meta {
+  background: #edf2f7;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
 /* Case detail page */
 .case-header {
   margin-bottom: 1.5rem;

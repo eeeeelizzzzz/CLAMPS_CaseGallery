@@ -3,8 +3,8 @@ import {
   formatDate,
   getCaseById,
   getQueryParam,
-  casePageUrl,
   renderTags,
+  renderFigures,
   renderSections,
 } from "./app.js";
 
@@ -45,20 +45,13 @@ async function init() {
         <div class="case-meta">
           <span>${entry.subtitle}</span>
           <span>${formatDate(entry.date)}</span>
-          <span>ID: ${entry.id}</span>
+          <span>${entry.campaign}</span>
+          <span>${entry.location}</span>
         </div>
         ${renderTags(entry.tags)}
       </header>
 
-      <figure class="figure-panel">
-        <figcaption class="figure-panel__header">Instrument overview</figcaption>
-        <div class="figure-panel__body">
-          <img
-            src="${entry.image}"
-            alt="${entry.title} — ${entry.subtitle} instrument overview"
-          >
-        </div>
-      </figure>
+      ${renderFigures(entry)}
 
       ${renderSections(entry.sections)}
     `;

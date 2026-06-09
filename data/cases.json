@@ -3,7 +3,9 @@
     "id": "nllj_c2",
     "date": "2016-08-02",
     "title": "Nocturnal Low-Level Jet",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "BLISSFUL",
+    "location": "Colorado",
     "image": "images/nllj_c2_instrument_template_4panel.png",
     "tags": ["boundary layer", "nocturnal"]
   },
@@ -11,7 +13,9 @@
     "id": "nllj_c1",
     "date": "2018-08-26",
     "title": "Nocturnal Low-Level Jet",
-    "subtitle": "Case 1",
+    "subtitle": "CLAMPS1",
+    "campaign": "TRACER",
+    "location": "Texas",
     "image": "images/nllj_c1_instrument_template_4panel.png",
     "tags": ["boundary layer", "nocturnal"]
   },
@@ -19,31 +23,38 @@
     "id": "stable_bad_dl_c1",
     "date": "2019-01-25",
     "title": "Stable Boundary Layer — Poor Data Latency",
-    "subtitle": "Case 1",
+    "subtitle": "CLAMPS1",
+    "campaign": "PERiLS 22",
+    "location": "Alabama",
     "image": "images/stable_bad_dl_c1_instrument_template_4panel.png",
     "tags": ["stable boundary layer", "data latency"]
   },
   {
-    "id": "ci_c1",
+    "id": "ci_gravity_waves_c1",
     "date": "2020-07-30",
-    "title": "Convective Initiation",
-    "subtitle": "Case 1",
-    "image": "images/ci_c1_instrument_template_4panel.png",
-    "tags": ["convection", "initiation"]
-  },
-  {
-    "id": "gravity_waves_c1",
-    "date": "2020-07-30",
-    "title": "Gravity Waves",
-    "subtitle": "Case 1",
-    "image": "images/gravity_waves_c1_instrument_template_4panel.png",
-    "tags": ["gravity waves"]
+    "title": "Convective Initiation & Gravity Waves",
+    "subtitle": "CLAMPS1",
+    "campaign": "NWCRIL 20",
+    "location": "Illinois",
+    "images": [
+      {
+        "src": "images/ci_c1_instrument_template_4panel.png",
+        "label": "Convective initiation"
+      },
+      {
+        "src": "images/gravity_waves_c1_instrument_template_4panel.png",
+        "label": "Gravity waves"
+      }
+    ],
+    "tags": ["convection", "initiation", "gravity waves"]
   },
   {
     "id": "diurnal_c2",
     "date": "2021-07-06",
     "title": "Diurnal Cycle",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "BLISSFUL",
+    "location": "Colorado",
     "image": "images/diurnal_c2_instrument_template_4panel.png",
     "tags": ["diurnal", "boundary layer"]
   },
@@ -51,7 +62,9 @@
     "id": "deep_cbl_c1",
     "date": "2022-07-20",
     "title": "Deep Convective Boundary Layer",
-    "subtitle": "Case 1",
+    "subtitle": "CLAMPS1",
+    "campaign": "TRACER",
+    "location": "Texas",
     "image": "images/deep_cbl_c1_instrument_template_4panel.png",
     "tags": ["convective boundary layer"]
   },
@@ -59,7 +72,9 @@
     "id": "sea_breeze_c1",
     "date": "2022-07-17",
     "title": "Sea Breeze",
-    "subtitle": "Case 1",
+    "subtitle": "CLAMPS1",
+    "campaign": "TRACER",
+    "location": "Texas",
     "image": "images/sea_breeze_c1_instrument_template_4panel.png",
     "tags": ["sea breeze", "coastal"]
   },
@@ -67,7 +82,9 @@
     "id": "sea_breeze_c2",
     "date": "2022-07-17",
     "title": "Sea Breeze",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "TRACER",
+    "location": "Texas",
     "image": "images/sea_breeze_c2_instrument_template_4panel.png",
     "tags": ["sea breeze", "coastal"]
   },
@@ -75,7 +92,9 @@
     "id": "stable_good_dl_c2",
     "date": "2022-12-02",
     "title": "Stable Boundary Layer — Good Data Latency",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "Norman",
+    "location": "Oklahoma",
     "image": "images/stable_good_dl_c2_instrument_template_4panel.png",
     "tags": ["stable boundary layer", "data latency"]
   },
@@ -83,7 +102,9 @@
     "id": "cold_pool_c2",
     "date": "2023-06-28",
     "title": "Cold Pool",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "PERiLS 23",
+    "location": "Alabama",
     "image": "images/cold_pool_c2_instrument_template_4panel.png",
     "tags": ["convection", "cold pool"]
   },
@@ -91,7 +112,9 @@
     "id": "ci_c2",
     "date": "2023-07-20",
     "title": "Convective Initiation",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "AWAKEN 23",
+    "location": "Oklahoma",
     "image": "images/ci_c2_instrument_template_4panel.png",
     "tags": ["convection", "initiation"]
   },
@@ -99,7 +122,9 @@
     "id": "gravity_waves_c2",
     "date": "2023-08-05",
     "title": "Gravity Waves",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "BLISSFUL",
+    "location": "Colorado",
     "image": "images/gravity_waves_c2_instrument_template_4panel.png",
     "tags": ["gravity waves"]
   },
@@ -107,7 +132,9 @@
     "id": "deep_cbl_c2",
     "date": "2023-08-25",
     "title": "Deep Convective Boundary Layer",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "AWAKEN 23",
+    "location": "Oklahoma",
     "image": "images/deep_cbl_c2_instrument_template_4panel.png",
     "tags": ["convective boundary layer"]
   },
@@ -115,7 +142,9 @@
     "id": "la_interaction_c1",
     "date": "2023-09-01",
     "title": "Land–Atmosphere Interaction",
-    "subtitle": "Case 1",
+    "subtitle": "CLAMPS1",
+    "campaign": "AWAKEN 23",
+    "location": "Oklahoma",
     "image": "images/la_interaction_c1_instrument_template_4panel.png",
     "tags": ["land–atmosphere interaction"]
   },
@@ -123,7 +152,9 @@
     "id": "sharp_grad_c2",
     "date": "2026-03-14",
     "title": "Sharp Gradient",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "Norman",
+    "location": "Oklahoma",
     "image": "images/sharp_grad_c2_instrument_template_4panel.png",
     "tags": ["fronts", "gradients"]
   },
@@ -131,7 +162,9 @@
     "id": "fropa_c2",
     "date": "2026-03-27",
     "title": "Frontal Passage",
-    "subtitle": "Case 2",
+    "subtitle": "CLAMPS2",
+    "campaign": "Norman",
+    "location": "Oklahoma",
     "image": "images/fropa_c2_instrument_template_4panel.png",
     "tags": ["fronts"]
   }

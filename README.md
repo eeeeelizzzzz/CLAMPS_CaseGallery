@@ -18,7 +18,7 @@ A GitHub Pages site showcasing CLAMPS example cases with instrument overview fig
 ## Adding or updating cases
 
 1. Place the combined plot PNG in `images/` using the naming pattern `{case_id}_instrument_template_4panel.png`.
-2. Add or edit an entry in `data/cases.json` with `id`, `date`, `title`, `subtitle`, `image`, and optional `tags`.
+2. Add or edit an entry in `data/cases.json` with `id`, `date`, `title`, `subtitle` (`CLAMPS1` or `CLAMPS2`), `campaign`, `location`, `image` (or `images` for multi-figure cases), and optional thematic `tags`.
 3. For future per-case content, add a `sections` array to the case entry. Supported section types include `text`, `html`, and `image` (see `js/app.js`).
 
 ## Local preview

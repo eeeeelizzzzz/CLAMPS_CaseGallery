@@ -25,8 +25,34 @@ function formatDate(isoDate) {
   });
 }
 
+const CASE_ALIASES = {
+  ci_c1: "ci_gravity_waves_c1",
+  gravity_waves_c1: "ci_gravity_waves_c1",
+};
+
 function getCaseById(cases, id) {
-  return cases.find((entry) => entry.id === id);
+  const resolvedId = CASE_ALIASES[id] || id;
+  return cases.find((entry) => entry.id === resolvedId);
+}
+
+function getPrimaryImage(entry) {
+  if (entry.images && entry.images.length > 0) {
+    return entry.images[0].src;
+  }
+
+  return entry.image;
+}
+
+function getCaseImages(entry) {
+  if (entry.images && entry.images.length > 0) {
+    return entry.images;
+  }
+
+  if (entry.image) {
+    return [{ src: entry.image, label: "Instrument overview" }];
+  }
+
+  return [];
 }
 
 function getQueryParam(name) {
@@ -67,6 +93,8 @@ function filterCases(cases, query) {
       entry.title,
       entry.subtitle,
       entry.date,
+      entry.campaign,
+      entry.location,
       ...(entry.tags || []),
     ]
       .join(" ")
@@ -76,31 +104,64 @@ function filterCases(cases, query) {
   });
 }
 
-function renderTags(tags) {
+function renderTags(tags, extraClass = "") {
   if (!tags || tags.length === 0) return "";
 
-  const items = tags.map((tag) => `<li class="tag">${tag}</li>`).join("");
+  const className = extraClass ? `tag ${extraClass}` : "tag";
+  const items = tags.map((tag) => `<li class="${className}">${tag}</li>`).join("");
   return `<ul class="tag-list">${items}</ul>`;
+}
+
+function renderCardTags(entry) {
+  const metaTags = [entry.campaign, entry.location].filter(Boolean);
+  const metaHtml = metaTags.length
+    ? renderTags(metaTags, "tag--meta")
+    : "";
+  const themeHtml = renderTags(entry.tags);
+
+  if (!metaHtml && !themeHtml) return "";
+  return `${metaHtml}${themeHtml}`;
 }
 
 function renderCaseCard(entry) {
   const alt = `${entry.title} — ${entry.subtitle} (${entry.date})`;
+  const thumb = getPrimaryImage(entry);
 
   return `
     <li class="case-card">
       <a href="${casePageUrl(entry.id)}">
         <div class="case-card__thumb">
-          <img src="${entry.image}" alt="${alt}" loading="lazy">
+          <img src="${thumb}" alt="${alt}" loading="lazy">
         </div>
         <div class="case-card__body">
           <p class="case-card__date">${formatDate(entry.date)}</p>
           <h2 class="case-card__title">${entry.title}</h2>
           <p class="case-card__subtitle">${entry.subtitle}</p>
-          ${renderTags(entry.tags)}
+          ${renderCardTags(entry)}
         </div>
       </a>
     </li>
   `;
+}
+
+function renderFigures(entry) {
+  const images = getCaseImages(entry);
+
+  return images
+    .map(
+      (figure) => `
+        <figure class="figure-panel">
+          <figcaption class="figure-panel__header">${figure.label}</figcaption>
+          <div class="figure-panel__body">
+            <img
+              src="${figure.src}"
+              alt="${entry.title} — ${figure.label}"
+            >
+          </div>
+        </figure>
+      `
+    )
+    .join("");
 }
 
 function renderSections(sections) {
@@ -152,6 +213,8 @@ export {
   sortCases,
   filterCases,
   renderCaseCard,
+  renderCardTags,
   renderTags,
+  renderFigures,
   renderSections,
 };
