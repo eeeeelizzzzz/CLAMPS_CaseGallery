@@ -22,24 +22,24 @@
   {
     "id": "stable_bad_dl_c1",
     "date": "2019-01-25",
-    "title": "Stable Boundary Layer — Poor Data Latency",
+    "title": "Stable Boundary Layer — Degraded Lidar Quality",
     "subtitle": "CLAMPS1",
     "campaign": "PERiLS 22",
     "location": "Alabama",
     "image": "images/stable_bad_dl_c1_instrument_template_4panel.png",
-    "tags": ["stable boundary layer", "data latency"]
+    "tags": ["stable boundary layer"]
   },
   {
     "id": "ci_gravity_waves_c1",
     "date": "2020-07-30",
-    "title": "Convective Initiation & Gravity Waves",
+    "title": "Convection Initiation & Gravity Waves",
     "subtitle": "CLAMPS1",
     "campaign": "NWCRIL 20",
     "location": "Illinois",
     "images": [
       {
         "src": "images/ci_c1_instrument_template_4panel.png",
-        "label": "Convective initiation"
+        "label": "Convection initiation"
       },
       {
         "src": "images/gravity_waves_c1_instrument_template_4panel.png",
@@ -91,12 +91,12 @@
   {
     "id": "stable_good_dl_c2",
     "date": "2022-12-02",
-    "title": "Stable Boundary Layer — Good Data Latency",
+    "title": "Stable Boundary Layer — Good Lidar Quality",
     "subtitle": "CLAMPS2",
     "campaign": "Norman",
     "location": "Oklahoma",
     "image": "images/stable_good_dl_c2_instrument_template_4panel.png",
-    "tags": ["stable boundary layer", "data latency"]
+    "tags": ["stable boundary layer"]
   },
   {
     "id": "cold_pool_c2",
@@ -111,7 +111,7 @@
   {
     "id": "ci_c2",
     "date": "2023-07-20",
-    "title": "Convective Initiation",
+    "title": "Convection Initiation",
     "subtitle": "CLAMPS2",
     "campaign": "AWAKEN 23",
     "location": "Oklahoma",

@@ -49,7 +49,7 @@ function getCaseImages(entry) {
   }
 
   if (entry.image) {
-    return [{ src: entry.image, label: "Instrument overview" }];
+    return [{ src: entry.image, label: "Standard CLAMPS observations" }];
   }
 
   return [];
@@ -121,6 +121,32 @@ function renderCardTags(entry) {
 
   if (!metaHtml && !themeHtml) return "";
   return `${metaHtml}${themeHtml}`;
+}
+
+function renderCaseTableRow(entry) {
+  const url = casePageUrl(entry.id);
+
+  return `
+    <tr class="case-table__row" tabindex="0" role="link" data-href="${url}">
+      <td>${formatDate(entry.date)}</td>
+      <td>${entry.subtitle}</td>
+      <td>${entry.title}</td>
+      <td>${entry.campaign}</td>
+      <td>${entry.location}</td>
+    </tr>
+  `;
+}
+
+function renderCaseTableBody(cases) {
+  if (cases.length === 0) {
+    return `
+      <tr>
+        <td colspan="5" class="empty-state">No cases available.</td>
+      </tr>
+    `;
+  }
+
+  return cases.map(renderCaseTableRow).join("");
 }
 
 function renderCaseCard(entry) {
@@ -212,6 +238,7 @@ export {
   casePageUrl,
   sortCases,
   filterCases,
+  renderCaseTableBody,
   renderCaseCard,
   renderCardTags,
   renderTags,

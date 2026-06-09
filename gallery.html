@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Cases — CLAMPS Case Gallery</title>
+  <meta name="description" content="Browse all CLAMPS example cases with instrument visualizations.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <nav class="site-nav">
+        <a href="index.html">&larr; Table view</a>
+      </nav>
+      <h1>CLAMPS Case Gallery</h1>
+      <p>
+        Example boundary-layer and mesoscale cases observed with the Collaborative
+        Lower Atmospheric Mobile Profiling System (CLAMPS). Select a case to view
+        its instrument overview and related material.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <label for="search">Search</label>
+      <input id="search" type="search" placeholder="Filter by name, date, or tag…" autocomplete="off">
+
+      <label for="sort">Sort by</label>
+      <select id="sort">
+        <option value="date-desc">Date (newest first)</option>
+        <option value="date-asc">Date (oldest first)</option>
+        <option value="title">Title</option>
+      </select>
+
+      <span id="case-count" class="case-count"></span>
+    </div>
+
+    <ul id="case-grid" class="case-grid" aria-live="polite">
+      <li class="empty-state">Loading cases…</li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    CLAMPS Case Gallery &middot; University of Oklahoma
+  </footer>
+
+  <script type="module" src="js/gallery.js"></script>
+</body>
+</html>

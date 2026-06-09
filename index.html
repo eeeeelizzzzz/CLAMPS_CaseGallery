@@ -13,36 +13,40 @@
       <h1>CLAMPS Case Gallery</h1>
       <p>
         Example boundary-layer and mesoscale cases observed with the Collaborative
-        Lower Atmospheric Mobile Profiling System (CLAMPS). Select a case to view
-        its instrument overview and related material.
+        Lower Atmospheric Mobile Profiling System (CLAMPS). Select a row to open
+        a case, or browse the full gallery with preview figures.
       </p>
+      <div class="header-actions">
+        <a href="gallery.html" class="header-link">View all</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <div class="controls">
-      <label for="search">Search</label>
-      <input id="search" type="search" placeholder="Filter by name, date, or tag…" autocomplete="off">
-
-      <label for="sort">Sort by</label>
-      <select id="sort">
-        <option value="date-desc">Date (newest first)</option>
-        <option value="date-asc">Date (oldest first)</option>
-        <option value="title">Title</option>
-      </select>
-
-      <span id="case-count" class="case-count"></span>
+    <div class="table-panel">
+      <table class="case-table" aria-label="CLAMPS example cases">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Platform</th>
+            <th scope="col">Case type</th>
+            <th scope="col">Campaign</th>
+            <th scope="col">Location</th>
+          </tr>
+        </thead>
+        <tbody id="case-table-body">
+          <tr>
+            <td colspan="5" class="empty-state">Loading cases…</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <ul id="case-grid" class="case-grid" aria-live="polite">
-      <li class="empty-state">Loading cases…</li>
-    </ul>
   </main>
 
   <footer class="site-footer">
     CLAMPS Case Gallery &middot; University of Oklahoma
   </footer>
 
-  <script type="module" src="js/index.js"></script>
+  <script type="module" src="js/home.js"></script>
 </body>
 </html>

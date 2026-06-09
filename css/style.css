@@ -80,6 +80,31 @@ a:hover {
   opacity: 1;
 }
 
+.site-nav__sep {
+  opacity: 0.55;
+  margin: 0 0.35rem;
+}
+
+.header-actions {
+  margin-top: 1.25rem;
+}
+
+.header-link {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.header-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+}
+
 main {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -119,6 +144,63 @@ main {
   margin-left: auto;
   font-size: 0.875rem;
   color: var(--text-muted);
+}
+
+.table-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.case-table thead {
+  background: #fafbfd;
+  border-bottom: 1px solid var(--border);
+}
+
+.case-table th,
+.case-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.case-table th {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.case-table tbody tr + tr {
+  border-top: 1px solid var(--border);
+}
+
+.case-table__row {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.case-table__row:hover,
+.case-table__row:focus {
+  background: var(--accent-light);
+  outline: none;
+}
+
+.case-table__row:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.case-table td:first-child {
+  white-space: nowrap;
 }
 
 .case-grid {
@@ -237,6 +319,7 @@ main {
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
+  margin-right: 1rem;
 }
 
 .figure-panel {
@@ -323,5 +406,13 @@ main {
 
   .case-count {
     margin-left: 0;
+  }
+
+  .table-panel {
+    overflow-x: auto;
+  }
+
+  .case-table {
+    min-width: 640px;
   }
 }

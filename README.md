@@ -8,7 +8,8 @@ A GitHub Pages site showcasing CLAMPS example cases with instrument overview fig
 
 | Path | Purpose |
 |------|---------|
-| `index.html` | Landing page with searchable case menu |
+| `index.html` | Home page with a sortable case table |
+| `gallery.html` | Card gallery with searchable case menu |
 | `case.html?id=…` | Individual case pages |
 | `data/cases.json` | Case metadata (dates, titles, images, tags) |
 | `images/` | Combined instrument overview figures |
