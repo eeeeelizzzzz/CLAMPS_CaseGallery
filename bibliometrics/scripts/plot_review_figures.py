@@ -1332,6 +1332,15 @@ def _affil_counts(df: pd.DataFrame) -> dict[str, int | str]:
     }
 
 
+def _has_fulltext_evidence(row: pd.Series) -> bool:
+    """True when PDF/HTML scan produced mention snippets or a positive scan log."""
+    ctx = str(row.get("sample_context", "") or "").strip()
+    if ctx:
+        return True
+    count = pd.to_numeric(row.get("pdf_mention_count", 0), errors="coerce")
+    return pd.notna(count) and count > 0
+
+
 def build_table_x(frames: dict[str, pd.DataFrame]) -> pd.DataFrame:
     """
     Corpus summary table for the review paper (counts by subset).
@@ -1339,7 +1348,6 @@ def build_table_x(frames: dict[str, pd.DataFrame]) -> pd.DataFrame:
     """
     all_works = frames["flagged_yd"]
     pub = frames["pdf_confirmed"]
-    peer = pub[pub["is_peer_reviewed"]]
     theses = all_works[all_works["corpus_class"] == "thesis"]
     datasets = all_works[all_works["corpus_class"] == "dataset"]
 
@@ -1348,11 +1356,10 @@ def build_table_x(frames: dict[str, pd.DataFrame]) -> pd.DataFrame:
 
     rows: list[dict] = [
         row("Full review corpus", all_works, "726 works; all inclusion streams"),
-        row("Articles + reports", pub, "Publication-type subset"),
         row(
-            "Peer-reviewed articles & review papers",
-            peer,
-            "OpenAlex types article/review/letter; excludes peer-review comments",
+            "Published literature",
+            pub,
+            "Articles, reports, and preprints (590 works)",
         ),
         row("Theses & dissertations", theses, "Manual acceptance via Channel H/F"),
         {
@@ -1370,12 +1377,9 @@ def build_table_y(
     frames: dict[str, pd.DataFrame],
     use_classified: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
-    """Impact metrics: peer-reviewed counts, PDF use tiers, and theses."""
-    hc = frames["high_confidence"]
-    pdf = frames["pdf_confirmed"]
-    peer_pdf = pdf[pdf["is_peer_reviewed"]]
-    theses_pdf = pdf[pdf["is_thesis"]]
-    theses_hc = hc[hc["is_thesis"]]
+    """Impact metrics: published literature baseline, full-text evidence, use tiers, theses."""
+    pub = frames["pdf_confirmed"]
+    theses = frames["flagged_yd"][frames["flagged_yd"]["corpus_class"] == "thesis"]
 
     def row(metric: str, df: pd.DataFrame, notes: str) -> dict:
         counts = _affil_counts(df)
@@ -1387,58 +1391,40 @@ def build_table_y(
             "notes": notes,
         }
 
-    use_rows: list[dict] = []
-    if use_classified is not None and not use_classified.empty:
-        substantive = use_classified[
-            use_classified["use_tier"].isin([1, 2]) & (use_classified["is_peer_reviewed"] == True)  # noqa: E712
-        ]
-        tier1 = use_classified[
-            (use_classified["use_tier"] == 1) & (use_classified["is_peer_reviewed"] == True)  # noqa: E712
-        ]
-        excluded = use_classified[use_classified["use_tier"] == 0]
-        use_rows = [
-            row(
-                "Substantive use — Tier 1+2 (peer-reviewed, PDF-confirmed)",
-                substantive,
-                "Data use, analysis, or discussion — excludes peripheral refs and false positives",
-            ),
-            row(
-                "Data / instrument use — Tier 1 only (peer-reviewed)",
-                tier1,
-                "Dataset DOI, repository URL, grant, or CLAMPS deployment in methods/results",
-            ),
-            row(
-                "Excluded — false positives (Tier 0)",
-                excluded,
-                "Word collision or unrelated topic; removed from substantive counts",
-            ),
-        ]
+    rows: list[dict] = [
+        row(
+            "Published literature (review corpus)",
+            pub,
+            "Baseline: all articles, reports, and preprints in the 726-work corpus",
+        ),
+    ]
 
-    return pd.DataFrame(
-        [
-            row(
-                "Peer-reviewed publications — high-confidence metadata",
-                hc[hc["is_peer_reviewed"]],
-                "Upper bound before PDF verification",
-            ),
-            row(
-                "Peer-reviewed publications — PDF CLAMPS confirmed",
-                peer_pdf,
-                "Conservative impact count from full-text search",
-            ),
-            *use_rows,
-            row(
-                "Theses & dissertations — metadata (all fields)",
-                theses_hc,
-                "Includes non-meteorology false positives",
-            ),
-            row(
-                "Theses & dissertations — PDF CLAMPS confirmed",
-                theses_pdf,
-                "Small sample; OU theses require repository search",
-            ),
-        ]
+    if use_classified is not None and not use_classified.empty:
+        with_mention = use_classified[use_classified.apply(_has_fulltext_evidence, axis=1)]
+        substantive = use_classified[use_classified["use_tier"].isin([1, 2])]
+        rows.extend(
+            [
+                row(
+                    "Full-text CLAMPS mention found",
+                    with_mention,
+                    "Subset of published literature with PDF/HTML scan hits",
+                ),
+                row(
+                    "Substantive use (Tier 1+2)",
+                    substantive,
+                    "Data, analysis, or discussion use — excludes peripheral references",
+                ),
+            ]
+        )
+
+    rows.append(
+        row(
+            "Theses (review corpus)",
+            theses,
+            "29 manual theses; full-text scan coverage is limited",
+        )
     )
+    return pd.DataFrame(rows)
 
 
 MULTI_CAMPAIGN_ROW = "Multiple campaigns"
