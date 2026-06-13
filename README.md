@@ -1,10 +1,10 @@
-# CLAMPS Case Gallery
+# CLAMPS Case Gallery and Bibliometrics
 
-A GitHub Pages site showcasing CLAMPS example cases with instrument overview figures. Each case has a detail page that can be extended with additional text, plots, and interactive content as it is developed.
-
+This repository contains a GitHub Pages site showcasing CLAMPS example cases with instrument overview figures. Each case has a detail page that can be extended with additional plots and content. An example of data visualization code is also provided.
 **Live site:** [https://eeeeelizzzzz.github.io/CLAMPS_CaseGallery/](https://eeeeelizzzzz.github.io/CLAMPS_CaseGallery/)
 
-**Bibliometrics (726-work review corpus):** [bibliometrics/index.html](bibliometrics/index.html) ·
+**Bibliometrics (726-work review corpus):** [bibliometrics/index.html](bibliometrics/index.html)
+This part of the repository contains a minumum working implementation of the bibliometric analysis approach used. A method walkthrough is provided as an interactive notebook. View it directly: 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/eeeeelizzzzz/CLAMPS_CaseGallery/HEAD?urlpath=lab/tree/bibliometrics/notebooks/reproduce.ipynb)
 
 ## Structure
